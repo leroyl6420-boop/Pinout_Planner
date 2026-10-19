@@ -16,14 +16,15 @@ struct Component {
     int digital;
     int analog;
     int pwm;
-    bool connected;
-}
+    bool connected = false;
+    int assignedpin = -1;
+};
 
 vector<Component> components = {
-    {"LED", 1, 0, 0, false};
-    {"Button", 1, 0, 0, false};
-    {"Photoresistor", 0, 1, 0, false};
-    {"Buzzer", 0, 0, 1, false};
+    //{"LED", 1, 0, 0, false, -1},
+    //{"Button", 1, 0, 0, false, -1},
+    //{"Photoresistor", 0, 1, 0, false, -1},
+    //{"Buzzer", 0, 0, 1, false, -1},
 };
 
 vector<Pin> createzeropins() {
@@ -60,7 +61,12 @@ vector<Pin> createpicopins() {
 
 int main() {
     int choice;
-    vector<Pin> pins;
+    vector<Pin> pins;   
+    int led;
+    int button;
+    int photoresistor;
+    int buzzer;
+    vector<Component> components;
 
     cout << "Which MCU are you using?\n";
     cout << "1) Waveshare RP2040 Zero\n";
@@ -80,7 +86,34 @@ int main() {
     }    
 
     cout << "MCU loaded successfully!\n";
-    cout << "Number of pins: " << pins.size() << endl;
+    cout << "How many LED's are being used?\n";
+    cout << "LED's: ";
+    cin >> led;
+    cout << "How many buttons are being used?\n";
+    cout << "Buttons: ";
+    cin >> button;
+    cout << "How many photoresistors are being used?\n";
+    cout << "Photoresistors: ";
+    cin >> photoresistor;
+    cout << "How many passive buzzers are being used?\n";
+    cout << "Buzzers: ";
+    cin >> buzzer;
+    
+    for (int i = 0; i < led; i++) {
+        components.push_back({"LED", 1, 0, 0});
+    }
+    for (int i = 0; i < button; i++) {
+        components.push_back({"Button", 1, 0, 0});
+    }
+    for (int i = 0; i < photoresistor; i++) {
+        components.push_back({"Photoresistor", 0, 1, 0});
+    }
+    for (int i = 0; i < buzzer; i++) {
+        components.push_back({"Buzzer", 0, 0, 1});
+    }
+
+    Component& component = components[0];
+    cout << led << button << photoresistor << buzzer << endl;
 
     return 0;
 }
