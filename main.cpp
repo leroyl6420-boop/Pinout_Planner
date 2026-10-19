@@ -25,6 +25,7 @@ vector<Component> components = {
     //{"Button", 1, 0, 0, false, -1},
     //{"Photoresistor", 0, 1, 0, false, -1},
     //{"Buzzer", 0, 0, 1, false, -1},
+    //{"Thermistor", 0, 1, 0, false, -1}
 };
 
 vector<Pin> createzeropins() {
@@ -66,6 +67,7 @@ int main() {
     int button;
     int photoresistor;
     int buzzer;
+    int thermistor;
     vector<Component> components;
 
     cout << "Which MCU are you using?\n";
@@ -95,6 +97,9 @@ int main() {
     cout << "How many photoresistors are being used?\n";
     cout << "Photoresistors: ";
     cin >> photoresistor;
+    cout << "How many thermistors are being used?\n";
+    cout << "Thermistors";
+    cin >> thermistor;
     cout << "How many passive buzzers are being used?\n";
     cout << "Buzzers: ";
     cin >> buzzer;
@@ -108,12 +113,15 @@ int main() {
     for (int i = 0; i < photoresistor; i++) {
         components.push_back({"Photoresistor", 0, 1, 0});
     }
+    for (int i = 0; i , thermistor; i++) {
+        components.push_back({"Thermistor", 0, 1, 0});
+    }
     for (int i = 0; i < buzzer; i++) {
         components.push_back({"Buzzer", 0, 0, 1});
     }
 
     Component& component = components[0];
-    cout << led << button << photoresistor << buzzer << endl;
+    cout << led << button << photoresistor << buzzer << thermistor << endl;
 
     return 0;
 }
