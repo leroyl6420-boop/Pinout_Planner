@@ -120,8 +120,13 @@ int main() {
         components.push_back({"Buzzer", 0, 0, 1});
     }
 
-    Component& component = components[0];
-    cout << led << button << photoresistor << buzzer << thermistor << endl;
+    if (led.digital == 1 && gpio0.digital && !gpio0.occupied) {
+        led.assignedpin = gpio0.number;
+        led.connected = true;
+        gpio0.occupied = true;
+    }
+    
+    cout << led.name << " assigned to GPIO" << led.assignedPin << endl;
 
     return 0;
 }
