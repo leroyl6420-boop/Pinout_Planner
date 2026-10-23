@@ -55,8 +55,12 @@ vector<Pin> createzeropins() {
 
 vector<Pin> createpicopins() {
     return {
-        {0, false, false, false, false}
-        // add rest later
+        {9, true, false, true, false},
+        {10, true, false, true, false},
+        {11, true, false, true, false},
+        {12, true, false, true, false},
+        {13, true, false, true, false},
+        {14, true, false, true, false},
     };
 }
 
@@ -113,20 +117,45 @@ int main() {
     for (int i = 0; i < photoresistor; i++) {
         components.push_back({"Photoresistor", 0, 1, 0});
     }
-    for (int i = 0; i , thermistor; i++) {
+    for (int i = 0; i < thermistor; i++) {
         components.push_back({"Thermistor", 0, 1, 0});
     }
     for (int i = 0; i < buzzer; i++) {
         components.push_back({"Buzzer", 0, 0, 1});
     }
 
-    if (led.digital == 1 && gpio0.digital && !gpio0.occupied) {
-        led.assignedpin = gpio0.number;
-        led.connected = true;
-        gpio0.occupied = true;
+    for (int i = 0; i < components.size(); i++) {
+        Component& component = components[i];
+
+
+        for (int x = 0; x < pins.size() && !component.connected; x++) {
+            Pin& gpio0 = pins[x];
+
+            if (component.digital == 1 && gpio0.digital && !gpio0.occupied) {
+                component.assignedpin = gpio0.number;
+                component.connected = true;
+                gpio0.occupied = true;
+                break;
+            }
+            else if (component.analog == 1 && gpio0.analog && !gpio0.occupied) {
+                component.assignedpin = gpio0.number;
+                component.connected = true;
+                gpio0.occupied = true;
+                break;
+            }
+            else if (component.pwm == 1 && gpio0.pwm && !gpio0.occupied) {
+                component.assignedpin = gpio0.number;
+                component.connected = true;
+                gpio0.occupied = true;
+                break;
+            }
+
+        }
+
+        cout << component.name << " assigned to GPIO" << component.assignedpin << endl;
+
     }
     
-    cout << led.name << " assigned to GPIO" << led.assignedPin << endl;
-
+    
     return 0;
 }
