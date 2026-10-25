@@ -55,12 +55,56 @@ vector<Pin> createzeropins() {
 
 vector<Pin> createpicopins() {
     return {
+        {0, true, false, true, false},
+        {1, true, false, true, false},
+        {2, true, false, true, false},
+        {3, true, false, true, false},
+        {4, true, false, true, false},
+        {5, true, false, true, false},
+        {6, true, false, true, false},
+        {7, true, false, true, false},
+        {8, true, false, true, false},
         {9, true, false, true, false},
         {10, true, false, true, false},
         {11, true, false, true, false},
         {12, true, false, true, false},
         {13, true, false, true, false},
         {14, true, false, true, false},
+        {15, true, false, true, false},
+        {16, true, false, true, false},
+        {17, true, false, true, false},
+        {18, true, false, true, false},
+        {19, true, false, true, false},
+        {20, true, false, true, false},
+        {21, true, false, true, false},
+        {22, true, false, true, false},
+        {26, true, true, true, false},
+        {27, true, true, true, false},
+        {28, true, true, true, false},
+    };
+}
+
+vector<Pin> createesp32pins() {
+    return {
+        {0, true, true, true, false},
+        {1, true, false, true, false},
+        {2, true, true, true, false},
+        {3, true, false, true, false},
+        {4, true, true, true, false},
+        {5, true, false, true, false},
+        {12, true, true, true, false},
+        {13, true, true, true, false},
+        {14, true, true, true, false},
+        {15, true, true, true, false},
+        {16, true, false, true, false},
+        {17, true, false, true, false},
+        {18, true, false, true, false},
+        {19, true, false, true, false},
+        {20, true, false, true, false},
+        {21, true, false, true, false},
+        {22, true, false, true, false},
+        {23, true, false, true, false},
+        {25, true, true, true, false},
     };
 }
 
